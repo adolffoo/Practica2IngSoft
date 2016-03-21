@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 5/03/2016 01:22:12 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pagina.Info" table="info" schema="public" optimistic-lock="version">
+        <id name="idInfo" type="int">
+            <column name="IdInfo" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="usuario" class="pagina.Usuario" fetch="select">
+            <column name="idUsuario" />
+        </many-to-one>
+        <property name="correo" type="string">
+            <column name="correo" length="50" not-null="true" />
+        </property>
+        <property name="nombre" type="string">
+            <column name="nombre" length="50" />
+        </property>
+        <property name="apellido" type="string">
+            <column name="apellido" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>
