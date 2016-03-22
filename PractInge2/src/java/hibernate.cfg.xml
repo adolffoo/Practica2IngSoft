@@ -7,7 +7,9 @@
     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/Sesion</property>
     <property name="hibernate.connection.username">postgres</property>
     <property name="hibernate.connection.password">postgres</property>
-    <mapping resource="pagina/Usuario.hbm.xml"/>
-    <mapping resource="pagina/Info.hbm.xml"/>
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <mapping resource="Pagina/Info.hbm.xml"/>
+    <mapping resource="Pagina/Usuario.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

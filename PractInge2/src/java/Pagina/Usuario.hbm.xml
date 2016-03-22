@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 5/03/2016 01:22:12 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated 22/03/2016 01:55:17 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="pagina.Usuario" table="usuario" schema="public" optimistic-lock="version">
+    <class name="Pagina.Usuario" table="usuario" schema="public" optimistic-lock="version">
+        <comment>Tabla que guardara los usuaios y sus contrasenias</comment>
         <id name="idUsuario" type="int">
             <column name="idUsuario" />
             <generator class="assigned" />
@@ -18,7 +19,7 @@
             <key>
                 <column name="idUsuario" />
             </key>
-            <one-to-many class="pagina.Info" />
+            <one-to-many class="Pagina.Info" />
         </set>
     </class>
 </hibernate-mapping>
