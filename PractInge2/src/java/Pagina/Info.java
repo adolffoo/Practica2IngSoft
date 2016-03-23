@@ -1,5 +1,5 @@
 package Pagina;
-// Generated 22/03/2016 01:55:16 PM by Hibernate Tools 4.3.1
+// Generated 22/03/2016 07:22:25 PM by Hibernate Tools 4.3.1
 
 
 

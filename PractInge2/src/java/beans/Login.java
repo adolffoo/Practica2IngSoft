@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 public class Login {
 
     private String usuario; 
-    private String contrasenia; 
+    private String contrasena; 
     private final HttpServletRequest httpServletRequest; 
     private final FacesContext faceContext; 
     private FacesMessage message; 
@@ -40,7 +40,7 @@ public class Login {
      * @return El nombre de la vista que va a responder.
      */
     public String login() {
-        if (usuario.equals("Mariano") && contrasenia.equals("joJo")) { 
+        if (usuario.equals("Mariano") && contrasena.equals("joJo")) { 
             httpServletRequest.getSession().setAttribute("sessionUsuario", usuario);
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Acceso Correcto", null);
             faceContext.addMessage(null, message);
@@ -76,7 +76,7 @@ public class Login {
      * @return La contraseña del usuario.
      */
     public String getContrasena() {
-        return contrasenia;
+        return contrasena;
     }
 
     /**
@@ -85,7 +85,7 @@ public class Login {
      * @param contrasena La contraseña del usuario a establecer.
      */
     public void setContrasena(String contrasena) {
-        this.contrasenia = contrasenia;
+        this.contrasena = contrasena;
     }
 
 }
