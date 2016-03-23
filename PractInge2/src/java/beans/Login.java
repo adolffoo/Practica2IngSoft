@@ -5,6 +5,9 @@
  */
 package beans;
 
+import Pagina.Usuario;
+import dao.ConsultUsuario;
+import dao.UsuarioImplement;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -19,28 +22,47 @@ import javax.servlet.http.HttpServletRequest;
 @RequestScoped
 public class Login {
 
-    private String usuario; 
-    private String contrasena; 
+
     private final HttpServletRequest httpServletRequest; 
     private final FacesContext faceContext; 
     private FacesMessage message; 
+
+    private Usuario usuario;
+    private ConsultUsuario usuarioconsult;
 
     /**
      * Constructor para inicializar los valores de faceContext y
      * httpServletRequest.
      */
     public Login() {
+        this.usuarioconsult = new UsuarioImplement();
         faceContext = FacesContext.getCurrentInstance();
         httpServletRequest = (HttpServletRequest) faceContext.getExternalContext().getRequest();
+
+        if (this.usuario == null) {
+            this.usuario = new Usuario();
+            
+                 }
+        }
+
+    public Usuario getUsuario() {
+        return usuario;
     }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    
+    
 
     /**
      * Método encargado de validar el inicio de sesión.
      *
      * @return El nombre de la vista que va a responder.
      */
-    public String login() {
-        if (usuario.equals("Mariano") && contrasena.equals("joJo")) { 
+    public String login() { //usuario.equals("Mariano") && contrasena.equals("joJo")
+        this.usuario = this.usuarioconsult.login(this.usuario);
+        if (this.usuario != null) {
             httpServletRequest.getSession().setAttribute("sessionUsuario", usuario);
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Acceso Correcto", null);
             faceContext.addMessage(null, message);
@@ -48,45 +70,12 @@ public class Login {
         } else {
             message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Usuario o contraseña incorrecto", null);
             faceContext.addMessage(null, message);
+            if (this.usuario == null) {
+            this.usuario = new Usuario();
+            
+                 }
             return "index";
         }
     }
 
-    /**
-     * Obtiene el nombre de usuario.
-     *
-     * @return El nombre de usuario.
-     */
-    public String getUsuario() {
-        return usuario;
-    }
-
-    /**
-     * Establece el nombre de usuario.
-     *
-     * @param usuario El nombre de usuario a establecer.
-     */
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
-    /**
-     * Regresa la contraseña del usuario.
-     *
-     * @return La contraseña del usuario.
-     */
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    /**
-     * Establece la contraseña del usuario.
-     *
-     * @param contrasena La contraseña del usuario a establecer.
-     */
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
-
 }
-
